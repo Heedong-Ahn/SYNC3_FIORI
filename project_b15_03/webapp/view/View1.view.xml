@@ -1,0 +1,116 @@
+<mvc:View
+    controllerName="test.projectb1503.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core='sap.ui.core'
+    xmlns:t='sap.ui.table'>
+    
+    <Page id="page" title="{i18n>title}"> <!-- i18n 은 전역 모델임 -->
+                                          <!-- mainfast.json이라는 곳에 있음 -->
+                                          <!-- 여기에 선언된 모델은 전역적으로 사용 가능 -->
+        <content>
+
+            <VBox>
+                
+                
+                               <!-- main은 지역 모델임 -->
+                <Panel headerText="{main>/name}"> <!-- Model Data 넣기 (Bindig 작업) -->
+
+                    <VBox>
+                        <Text text="{main>/title}"/>
+
+                        <Text text="{main>/age}"/>
+
+                        <Text text="list 1"/>
+                        <Text text="{main>/list/0}"/>
+                        <Text text="{main>/list/0/phone}"/>
+                        <Text text="{main>/list/0/home}"/>
+                        
+                        <Text text="list 2"/>
+                        <Text text="{main>/list/1/phone}"/>
+                        <Text text="{main>/list/1/home}"/>
+
+                        <Text text="list 3"/>
+                        <Text text="{main>/list/2/phone}"/>
+                        <Text text="{main>/list/2/home}"/>
+                    </VBox>
+                    
+                    <Input id='inputNum1' />
+                    <Input id='inputNum2' change='onChange'/>
+                    <FlexBox
+                        height="40px"
+                        alignItems="Center"
+                        justifyContent="Center">
+                        <!-- <Button text="1" type="Emphasized" class="sapUiSmallMarginEnd" />
+                        <Button text="2" type="Reject" class="sapUiSmallMarginEnd" />
+                        <Button text="3" type="Accept" /> -->
+                        
+                        <Select id='select' width='150px' selectedKey="{/SelectedProduct}">
+                                <items>
+                                    <core:Item key='PLUS' text='+'/>
+                                    <core:Item key='MINUS' text='-'/>
+                                    <core:Item key='MULTIPLE' text='*'/>
+                                    <core:Item key='DIVISION' text='/'/>
+                                </items>
+                        </Select>
+                        <Button id = 'button' text = "계산" type="Emphasized" press="onClick" />
+                    </FlexBox>
+
+                    <Text id='text' text='이곳에 결과가 출력됩니다.'/>
+                </Panel>
+
+
+                <!-- Aggregation Binding or List Bindinf or 배열 바인딩 -->
+                <t:Table
+				rows="{main>/list}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Number 1" />  <!-- Column 명 -->
+						<t:template>
+							<Text text="{main>num1}" wrapping="false" /> <!-- 해당 column에 채워질 row들 -->
+						</t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+						<Label text="Operator" />  <!-- Column 명 -->
+						<t:template>
+							<Text text="{main>operator}" wrapping="false" /> <!-- 해당 column에 채워질 row들 -->
+						</t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+						<Label text="Number 2" />  <!-- Column 명 -->
+						<t:template>
+							<Text text="{main>num2}" wrapping="false" /> <!-- 해당 column에 채워질 row들 -->
+						</t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+						<Label text="Result" />  <!-- Column 명 -->
+						<t:template>
+							<Text text="{main>result}" wrapping="false" /> <!-- 해당 column에 채워질 row들 -->
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+                
+            <!-- element bindng-->
+            <!-- <Text binding='{main>/list}' text="{main>num2}"/> -->
+
+            </VBox>
+
+            
+
+        </content>
+    </Page>
+</mvc:View>
+
+
+

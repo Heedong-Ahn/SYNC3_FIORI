@@ -1,0 +1,44 @@
+<mvc:View 
+    controllerName="sync.projectb1501.controller.main"
+    xmlns:t="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"> 
+    <!-- controllerName은 이 view에서 연결시킬 controller임 -->
+    <!-- xmlns:t <- 테이블 -->
+    <!-- mvc : model, view, controller -->
+
+    <Page id="page" title="안녕하세요">
+        <!-- <content /> -->
+        <content>
+        
+        <VBox>
+            <Button text = "but1" type="Emphasized" press="onClick"/> <!-- onClick는 Controller에 있음-->
+            <Text id='idText' text = "hello"/>
+            <Input id= 'idInput' value = '값을 입력하세요'></Input>
+        </VBox>
+
+        <t:Table
+				rows="{/ProductCollection}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Product Name" />
+						<t:template>
+							<Text text="{Name}" wrapping="false" />
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+
+        </content>
+    </Page>
+</mvc:View>

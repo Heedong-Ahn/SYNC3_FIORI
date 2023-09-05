@@ -1,0 +1,62 @@
+<mvc:View 
+    controllerName="projectb1504.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <t:Table
+                id = 'idTab'
+				rows="{/list}"
+				selectionMode="MultiToggle"
+				selectionBehavior="Row"
+				visibleRowCount="7"
+				rowActionCount="1"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+                        <ToolbarSpacer />                          <!-- Toolbar Spacer 툴바에 공간 주는 놈 ~~ -->
+                        <Button text='Add' icon='sap-icon://add' press='onAdd'/>
+                        <Button text='Delete' icon='sap-icon://delete' press='onDelete'/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Name" />
+						<t:template>
+							<Input value='{Name}' id='idName'/>
+						</t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+						<Label text="Address" />
+						<t:template>
+							<Input value='{Address}' id='idAdd'/>
+						</t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+						<Label text="Phone" />
+						<t:template>
+							<Input value='{Phone}' id='idPho'/>
+						</t:template>
+					</t:Column>
+                    <t:Column width="11rem">
+						<Label text="Department" />
+						<t:template>
+							<Input value='{Department}' id='idDep' />
+						</t:template>
+					</t:Column>
+				</t:columns>
+				<t:rowActionTemplate>
+					<t:RowAction>
+						<t:items>
+							<t:RowActionItem type="Delete" press='onRowActionDel'/>
+						</t:items>
+					</t:RowAction>
+				</t:rowActionTemplate>
+			</t:Table>                    
+        </content>
+    </Page>
+</mvc:View>
